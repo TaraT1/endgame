@@ -4,6 +4,8 @@ import { languages } from "./languages"
 export default function AssemblyEndgame() {
     const [currentWord, setCurrentWord] = React.useState("react")
 
+    const [letterGuess, setLetterGuess] = React.useState([])
+
     const languageElements = languages.map(language => {
         const styles = {
             backgroundColor: language.backgroundColor,
@@ -18,19 +20,28 @@ export default function AssemblyEndgame() {
             </span>
         )
     })
-
     const letterElements = currentWord.split('').map((letter, index) => (
-        <span 
-            key={index}
+        <span key={index}
             > {letter.toUpperCase()}
         </span>)
     )
 
     const keyboardKeys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
-    const keyboardElements = keyboardKeys.map((kKey, index) => (
+
+    // Guessed letters
+    function addLetterGuess(letter) {
+        // setLetterGuess(prevLetter => [...prevLetter, letter])//allows for duplicate letters
+        setLetterGuess(prevLetter => 
+            prevLetter.includes(letter) ? 
+            prevLetter : 
+            [...prevLetter, letter]
+        )
+    }
+
+    const keyboardElements = keyboardKeys.map((letter) => (
         <button 
-            key={index}>
-                {kKey}
+            key={letter} onClick={() => addLetterGuess(letter)}>
+                {letter}
             </button>
     ))
 

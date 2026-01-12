@@ -50,7 +50,7 @@ section.game-status > p {
 }
 
 section.languages {
-    margin: 20px;
+    margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
