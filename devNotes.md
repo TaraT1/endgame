@@ -47,3 +47,47 @@ return (
 
 ### Emojis
 Access menu with win+.
+
+### Nested ternary for game-status 
+``` jsx
+            <section className={gameStatusClass}>
+            {isGameOver ? (   
+                isGameWon ? (
+                <>
+                    <h2>You win!</h2>
+                    <p>Well done!🎉</p> 
+                </>
+            ) : (
+                <>
+                    <h2>Game Over!</h2>
+                    <p> You lose! Better start learning Assembly 😭</p>
+                </>
+                )
+            ): (
+                    null
+                )
+            }
+            </section>
+```
+- Can't use nested if:else statements inside of jsx expressions b/c they don't implicitly return anything. Expressions like ternaries automatically return value, so they get rendered in jsx. 
+
+Using if:else in helper function
+``` jsx
+//helper function
+function renderGameStatus() {
+    if(!isGameOver) {
+        return null
+    }
+
+    if( isGameWon) {
+        return (...)
+    } else {
+        return (...)
+    }
+}
+
+ 
+```
+
+### multiple cursors in vscode
+alt-click
