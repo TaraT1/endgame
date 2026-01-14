@@ -35,4 +35,15 @@ return (
             align-items: center;
         }
         ```
+
             background-color: #10A95B;
+
+        Fix impacts status message - section.game-status becomes compressed. Fix for it is:
+        ``` css
+        section.game-status {
+            width: 100%;
+            max-width: 350px;
+        }
+
+### Emojis
+Access menu with win+.
