@@ -10,6 +10,7 @@ export default function AssemblyEndgame() {
 
     //derived values
     //incorrect guesses
+    
     const wrongGuessCount = letterGuess.filter(letter => !currentWord.includes(letter)).length
     const isGameWon = 
         currentWord.split("").every(letter => letterGuess.includes(letter))
@@ -77,6 +78,9 @@ export default function AssemblyEndgame() {
             <button 
                 className={className}
                 key={letter} 
+                disabled={isGameOver}
+                aria-disabled={isGuess}
+                aria-label={`letter ${letter}`}
                 onClick={() => addLetterGuess(letter)}
             > 
                 {letter.toUpperCase()}
@@ -129,7 +133,11 @@ export default function AssemblyEndgame() {
                 <p>Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
             </header>
 
-            <section className={gameStatusClass}>
+            <section 
+                aria-live="polite" 
+                role="status" 
+                className={gameStatusClass}
+            >
                 {renderGameStatus()}
             </section>
 
@@ -139,6 +147,22 @@ export default function AssemblyEndgame() {
 
             <section className="word">
                 {letterElements}
+            </section>
+
+            {/* Screen reader only section for game updates */}
+            <section className="sr-only"
+                aria-live="polite"
+                role="status"
+            >
+                <p>
+                    {currentWord.includes(lastGuessedLetter) ? 
+                        `Correct! The letter ${lastGuessedLetter} is in the word.` :
+                        `Sorry! The letter ${lastGuessedLetter} is not in the word.`}
+
+                        You have ${languages.length - 1} guesses remaining.
+                </p>
+                <p>Current word: {currentWord.split("").map(letter => letterGuess.includes(letter) ? letter + "." : "blank.").join(" ")}</p>
+
             </section>
 
             <section className="keyboard">
