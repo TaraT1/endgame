@@ -1,11 +1,11 @@
 import React, {useState} from "react"
 import {clsx} from "clsx"
 import { languages } from "./languages"
-import { getFarewellText } from "./utils" 
+import { getRandomWord, getFarewellText } from "./utils" 
 
 export default function AssemblyEndgame() {
     //state values
-    const [currentWord, setCurrentWord] = React.useState("react".toUpperCase())
+    const [currentWord, setCurrentWord] = React.useState(() => getRandomWord().toUpperCase())//lazy state initialization
     const [letterGuess, setLetterGuess] = React.useState([])
 
     //derived values
