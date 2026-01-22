@@ -20,7 +20,6 @@ export default function AssemblyEndgame() {
 
     const lastGuessedLetter = letterGuess[letterGuess.length - 1]
     const isLastGuessWrong = lastGuessedLetter && !(currentWord.includes(lastGuessedLetter))
-    console.log(isLastGuessWrong)//correctly identifies if last guess was wrong
 
     //Static values
     //For language badges
@@ -42,13 +41,16 @@ export default function AssemblyEndgame() {
     })
 
     //For word to be guessed
-    const letterElements = currentWord.split('').map((letter, index) => (
-        <span 
-            key={index}
-            > 
-            {letterGuess.includes(letter) ?  letter.toUpperCase() : ""}
-        </span>)
-    )
+    const letterElements = currentWord.split('').map((letter, index) => {
+        const revealLetter = isGameLost || letterGuess.includes(letter)
+        const letterClassName = clsx(
+            isGameLost && !letterGuess.includes(letter) &&  "missed-letter" 
+        )
+        return (
+            <span key={index} className={letterClassName}> 
+                {revealLetter ?  letter.toUpperCase() : ""}
+            </span>
+    )})
 
     //Keyboard 
     const keyboardKeys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
@@ -63,11 +65,19 @@ export default function AssemblyEndgame() {
         )
     }
 
+    //Reset game
+    function newGame() {
+        //new word, reset keyboard
+        setCurrentWord(getRandomWord())
+        setLetterGuess([])
+    }
+
     //Update keyboard for incorrect or correct guesses
     const keyboardElements = keyboardKeys.map(letter => {
         const isGuess = letterGuess.includes(letter)
-        const isInWord = isGuess && currentWord.includes(letter) //background color: green
-        const isNotInWord = isGuess && !currentWord.includes(letter) //background color: red
+        const isInWord = isGuess && currentWord.includes(letter) 
+        const isNotInWord = isGuess && !currentWord.includes(letter) 
+
         const className = clsx ({
             correct: isInWord,
             wrong: isNotInWord
@@ -169,7 +179,7 @@ export default function AssemblyEndgame() {
                 {keyboardElements}
             </section>
 
-            {isGameOver && <button className="new-game">New Game</button>}
+            {isGameOver && <button className="new-game" onClick={newGame}>New Game</button>}
 
         </main>
     )
