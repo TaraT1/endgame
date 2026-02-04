@@ -1,6 +1,5 @@
 - Problems with vite version during install. Took awhile to realize it had to be in the vite install code. 
 
-
 ### 12 - lost languages
 ```javascript
 return (
@@ -85,9 +84,43 @@ function renderGameStatus() {
         return (...)
     }
 }
-
- 
 ```
 
 ### multiple cursors in vscode
 alt-click
+
+## Scrimna Learn React with Bob Ziroll (fcc)
+- recap:
+    - Built static, read-only pages
+    - Declarative, 
+    - composable (build reusable pieces)
+    - setting up new react project
+    - jsx, custom components
+    2. Data driven pages (travel journal)
+        - reusability, props, creating components from an array
+    3. Interactive web apps
+        - event listeners, state, conditional rendering
+        - forms (more closely aligned with native forms)
+        - state mgt strategies
+    4. Side Effects
+        - controlled components (forms)
+        - functional programming (immutability) in React
+        - escape hatch: fetching data with side effects
+    
+    - capstones: tenzies & end game
+
+- next steps:
+    - advanced react course on scrimba
+    - ts (free on scrimba)
+    - react router
+    - fs: next.js/remix (handle data interactions)
+    - be: node/express/REST APIs
+    - deployment
+
+### Deploy
+- scrimba discord refs
+- vercel failed with fs app
+- render 
+- github as front end; render or railway.com for be
+- import github repo using netlify, cercel or cloudflare pages
+    - watch for free tiers. Keep payment deets off account
