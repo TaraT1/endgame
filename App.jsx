@@ -1,6 +1,8 @@
 import React, {useState} from "react"
 import {clsx} from "clsx"
 import { languages } from "./languages"
+import { words } from "./words"
+import { colors } from "./colors"
 import { getRandomWord, getFarewellText } from "./utils" 
 import Confetti from "react-confetti"
 
@@ -16,29 +18,30 @@ export default function AssemblyEndgame() {
     const isGameWon = 
         currentWord.split("").every(letter => letterGuess.includes(letter))
     const isGameLost = 
-        wrongGuessCount > languages.length - 1
+        wrongGuessCount > colors.length - 1
     const isGameOver = isGameWon || isGameLost
 
     const lastGuessedLetter = letterGuess[letterGuess.length - 1]
     const isLastGuessWrong = lastGuessedLetter && !(currentWord.includes(lastGuessedLetter))
 
     //Static values
-    //For language badges
-    const languageElements = languages.map((language, index) => {
-        const isLanguageLost = index < wrongGuessCount
+    //For color badges
+    const colorElements = colors.map((color, index) => {
+        const isColorLost = index < wrongGuessCount
         const styles = {
-            backgroundColor: language.backgroundColor,
-            color: language.color
+            backgroundColor: color.backgroundColor,
+            color: color.color
         }
-        const className = clsx("badge", isLanguageLost && "lost")
+
+        const className = clsx("badge", isColorLost && "lost") 
         return (
-            <span 
+            <span
                 className={className}
-                key={language.name} 
+                key={color.name}
                 style={styles}
-                > {language.name}
+                > {color.name}
             </span>
-        )
+            )
     })
 
     //For word to be guessed
@@ -84,7 +87,6 @@ export default function AssemblyEndgame() {
             wrong: isNotInWord
         })
 
-
         return (
             <button 
                 className={className}
@@ -109,7 +111,7 @@ export default function AssemblyEndgame() {
         if (!isGameOver && isLastGuessWrong) {
             return (
             <p className="farewell-message"> 
-                {getFarewellText(languages[wrongGuessCount - 1].name)}
+                {getFarewellText(colors[wrongGuessCount - 1].name)}
             </p>
             )
         }
@@ -131,7 +133,7 @@ export default function AssemblyEndgame() {
             return (
                 <>
                     <h2>Game Over!</h2>
-                    <p> You lose! Better start learning Assembly 😭</p>
+                    <p> You lose! Better get used to no colors 😭</p>
                 </>
             )
         }
@@ -147,8 +149,8 @@ export default function AssemblyEndgame() {
                     />
             }
             <header>
-                <h1>Assembly: Endgame</h1>
-                <p>Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
+                <h1>Colors: Endgame</h1>
+                <p>Guess the word in under 7 attempts to keep the colors of the rainbow!</p>
             </header>
 
             <section 
@@ -159,8 +161,8 @@ export default function AssemblyEndgame() {
                 {renderGameStatus()}
             </section>
 
-            <section className="languages">
-                {languageElements}
+            <section className="colors">
+                {colorElements}
             </section>
 
             <section className="word">

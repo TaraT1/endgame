@@ -480,5 +480,22 @@ export const words = [
   "wrong",
   "yellow",
   "yesterday",
-  "young"
+  "young",
+  "courageous",
+  "steady",
+  "overcome",
+  "measure",
+  "recent",
+  "task",
+  "tender",
+  "anxious",
+  "anticipate",
+  "exclaim",
+  "awe",
+  "encourage",
+  "unfamiliar",
+  "uneasy",
+  "setback",
+  "destination",
+  "vanish"
 ];
