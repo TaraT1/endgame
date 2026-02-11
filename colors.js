@@ -1,5 +1,5 @@
 export const colors = [
-    //Note: the key is the name of the language
+    //Note: the key is the name of the color 
     {
         name: "Red",
         backgroundColor: "#D02B2B",

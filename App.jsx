@@ -1,12 +1,11 @@
 import React, {useState} from "react"
 import {clsx} from "clsx"
-import { languages } from "./languages"
 import { words } from "./words"
 import { colors } from "./colors"
 import { getRandomWord, getFarewellText } from "./utils" 
 import Confetti from "react-confetti"
 
-export default function AssemblyEndgame() {
+export default function ColorEndgame() {
     //state values
     const [currentWord, setCurrentWord] = React.useState(() => getRandomWord().toUpperCase())//lazy state initialization
     const [letterGuess, setLetterGuess] = React.useState([])
@@ -179,7 +178,7 @@ export default function AssemblyEndgame() {
                         `Correct! The letter ${lastGuessedLetter} is in the word.` :
                         `Sorry! The letter ${lastGuessedLetter} is not in the word.`}
 
-                        You have ${languages.length - 1} guesses remaining.
+                        You have ${colors.length - 1} guesses remaining.
                 </p>
                 <p>Current word: {currentWord.split("").map(letter => letterGuess.includes(letter) ? letter + "." : "blank.").join(" ")}</p>
 
